@@ -1,2 +1,1 @@
-# DevSpark-Next
-This the website.
+DevSpark is a fully interactive developer resource hub built using semantic HTML5, CSS3, and vanilla JavaScript (ES6). It features a complete CRUD application with array of objects, real-time DOM updates, 5+ search and filter options using advanced array methods (filter, map, sort, reduce, every, some, find, includes), 10+ string methods for data cleaning and display formatting, object manipulation using Object.keys(), Object.entries(), Object.assign(), and the delete operator, and a persistent dark/light theme toggle stored in localStorage. The project follows a modular folder structure with separated database, constants, utils, and pages directories.
