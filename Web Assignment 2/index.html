@@ -1,0 +1,1034 @@
+index.html
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>DevSpark — Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0a0f;
+        --surface: #111118;
+        --surface2: #1a1a24;
+        --accent: #00e5c8;
+        --accent2: #ff4d6d;
+        --accent3: #ffd166;
+        --text: #e8e8f0;
+        --muted: #6b6b80;
+        --border: #2a2a38;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      /* ── NAVBAR ── */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(10, 10, 15, 0.85);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+        padding: 0 2rem;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Bebas Neue", cursive;
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      .nav-logo img {
+        height: 30px;
+        filter: invert(1) sepia(1) hue-rotate(160deg) saturate(5);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+      .nav-auth {
+        display: flex;
+        gap: 12px;
+      }
+
+      .btn-ghost {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 7px 18px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+
+      .btn-ghost:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .btn-fill {
+        background: var(--accent);
+        border: none;
+        color: #000;
+        padding: 7px 18px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+
+      .btn-fill:hover {
+        opacity: 0.85;
+      }
+
+      /* ── SECTION LABEL ── */
+      .section-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 92vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 6rem 4rem;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--border) 1px, transparent 1px),
+          linear-gradient(90deg, var(--border) 1px, transparent 1px);
+        background-size: 60px 60px;
+        opacity: 0.3;
+        pointer-events: none;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 55% 70% at 75% 50%,
+            rgba(0, 229, 200, 0.08) 0%,
+            transparent 65%
+          ),
+          radial-gradient(
+            ellipse 40% 50% at 15% 85%,
+            rgba(255, 77, 109, 0.06) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 50% 40% at 50% 10%,
+            rgba(255, 209, 102, 0.04) 0%,
+            transparent 60%
+          );
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hero-eyebrow::before {
+        content: "";
+        display: block;
+        width: 32px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      .hero-title {
+        font-family: "Bebas Neue", cursive;
+        font-size: clamp(4.5rem, 9vw, 8rem);
+        line-height: 0.9;
+        letter-spacing: 0.01em;
+        margin-bottom: 2rem;
+      }
+
+      .hero-title span {
+        color: var(--accent);
+      }
+      .hero-title em {
+        font-style: normal;
+        color: var(--accent2);
+      }
+
+      .hero-body {
+        color: var(--muted);
+        font-size: 1.05rem;
+        max-width: 440px;
+        line-height: 1.85;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .cta-primary {
+        background: var(--accent);
+        color: #000;
+        padding: 13px 32px;
+        border-radius: 6px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.82rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-decoration: none;
+        transition:
+          opacity 0.2s,
+          transform 0.1s;
+        display: inline-block;
+      }
+
+      .cta-primary:hover {
+        opacity: 0.88;
+        transform: translateY(-1px);
+      }
+
+      .cta-secondary {
+        color: var(--muted);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.2s;
+      }
+
+      .cta-secondary:hover {
+        color: var(--accent);
+      }
+      .cta-secondary::after {
+        content: "→";
+        transition: transform 0.2s;
+      }
+      .cta-secondary:hover::after {
+        transform: translateX(4px);
+      }
+
+      .hero-right {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1.5rem;
+      }
+
+      .hero-big-text {
+        font-family: "Bebas Neue", cursive;
+        font-size: clamp(7rem, 14vw, 13rem);
+        line-height: 0.85;
+        color: transparent;
+        -webkit-text-stroke: 1px var(--border);
+        user-select: none;
+        letter-spacing: -0.02em;
+      }
+
+      .hero-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--muted);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 6px 14px;
+        border-radius: 4px;
+        letter-spacing: 0.1em;
+      }
+
+      /* ── TICKER ── */
+      .ticker {
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 10px 0;
+        overflow: hidden;
+      }
+
+      .ticker-track {
+        display: flex;
+        gap: 4rem;
+        animation: ticker 20s linear infinite;
+        width: max-content;
+      }
+
+      .ticker-item {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .ticker-item span {
+        color: var(--accent);
+      }
+
+      @keyframes ticker {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ── FEATURES ── */
+      .features {
+        padding: 6rem 4rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        margin-top: 3rem;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .feat-card {
+        padding: 2.5rem;
+        border-right: 1px solid var(--border);
+        transition: background 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feat-card:last-child {
+        border-right: none;
+      }
+      .feat-card:hover {
+        background: var(--surface);
+      }
+
+      .feat-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        transform: scaleX(0);
+        transition: transform 0.4s;
+        transform-origin: left;
+      }
+
+      .feat-card:nth-child(1)::after {
+        background: var(--accent);
+      }
+      .feat-card:nth-child(2)::after {
+        background: var(--accent2);
+      }
+      .feat-card:nth-child(3)::after {
+        background: var(--accent3);
+      }
+      .feat-card:hover::after {
+        transform: scaleX(1);
+      }
+
+      .feat-num {
+        font-family: "Bebas Neue", cursive;
+        font-size: 3.5rem;
+        line-height: 1;
+        color: var(--border);
+        margin-bottom: 1.25rem;
+        user-select: none;
+      }
+
+      .feat-title {
+        font-family: "Bebas Neue", cursive;
+        font-size: 1.6rem;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+      }
+      .feat-desc {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
+      .feat-badge {
+        margin-top: 1.5rem;
+        display: inline-block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        padding: 4px 10px;
+        border-radius: 3px;
+        text-transform: uppercase;
+      }
+
+      .badge-cyan {
+        background: rgba(0, 229, 200, 0.1);
+        color: var(--accent);
+      }
+      .badge-red {
+        background: rgba(255, 77, 109, 0.1);
+        color: var(--accent2);
+      }
+      .badge-yellow {
+        background: rgba(255, 209, 102, 0.1);
+        color: var(--accent3);
+      }
+
+      /* ── STATS ── */
+      .stats {
+        padding: 5rem 4rem;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 2.5rem;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--bg);
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.3s;
+      }
+
+      .stat-item:hover {
+        border-color: var(--accent);
+      }
+
+      .stat-item::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transition: transform 0.4s;
+      }
+
+      .stat-item:hover::before {
+        transform: scaleX(1);
+      }
+
+      .stat-num {
+        font-family: "Bebas Neue", cursive;
+        font-size: 4rem;
+        line-height: 1;
+        color: var(--accent);
+      }
+      .stat-label {
+        font-size: 0.78rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 0.5rem;
+      }
+
+      /* ── HOW IT WORKS ── */
+      .how-section {
+        padding: 6rem 4rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .how-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+        margin-top: 3rem;
+        position: relative;
+      }
+
+      .how-grid::before {
+        content: "";
+        position: absolute;
+        top: 28px;
+        left: 5%;
+        right: 5%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          var(--accent),
+          var(--accent2),
+          var(--accent3)
+        );
+      }
+
+      .how-dot {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Bebas Neue", cursive;
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .how-dot-1 {
+        background: rgba(0, 229, 200, 0.1);
+        border: 1px solid var(--accent);
+        color: var(--accent);
+      }
+      .how-dot-2 {
+        background: rgba(255, 77, 109, 0.1);
+        border: 1px solid var(--accent2);
+        color: var(--accent2);
+      }
+      .how-dot-3 {
+        background: rgba(255, 209, 102, 0.1);
+        border: 1px solid var(--accent3);
+        color: var(--accent3);
+      }
+
+      .how-title {
+        font-family: "Bebas Neue", cursive;
+        font-size: 1.4rem;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+      .how-desc {
+        color: var(--muted);
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
+
+      /* ── CTA BANNER ── */
+      .cta-banner {
+        margin: 0 4rem;
+        border-radius: 16px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        padding: 5rem 4rem;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 3rem;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 60% 80% at 0% 50%,
+            rgba(0, 229, 200, 0.06) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 40% 60% at 100% 50%,
+            rgba(255, 77, 109, 0.04) 0%,
+            transparent 60%
+          );
+        pointer-events: none;
+      }
+
+      .cta-banner-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1rem;
+      }
+
+      .cta-banner-title {
+        font-family: "Bebas Neue", cursive;
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        line-height: 0.95;
+        letter-spacing: 0.01em;
+        margin-bottom: 1rem;
+      }
+
+      .cta-banner-title span {
+        color: var(--accent);
+      }
+
+      .cta-banner-body {
+        color: var(--muted);
+        font-size: 0.95rem;
+        max-width: 480px;
+        line-height: 1.8;
+      }
+
+      .cta-banner-big {
+        font-family: "Bebas Neue", cursive;
+        font-size: 5rem;
+        color: transparent;
+        -webkit-text-stroke: 1px var(--border);
+        user-select: none;
+        line-height: 1;
+      }
+
+      /* ── TESTIMONIALS ── */
+      .testi-section {
+        padding: 6rem 4rem;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .testi-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .testi-card {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 2rem;
+        position: relative;
+        transition: border-color 0.3s;
+      }
+
+      .testi-card:hover {
+        border-color: var(--accent);
+      }
+
+      .testi-card::before {
+        content: '"';
+        position: absolute;
+        top: 10px;
+        right: 18px;
+        font-family: "Bebas Neue", cursive;
+        font-size: 5rem;
+        color: var(--border);
+        line-height: 1;
+      }
+
+      .testi-text {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: var(--text);
+        font-style: italic;
+        margin-bottom: 1.5rem;
+      }
+      .testi-author {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--accent);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        padding: 2.5rem 4rem;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-left {
+        font-family: "Bebas Neue", cursive;
+        font-size: 1.3rem;
+        color: var(--accent);
+        letter-spacing: 2px;
+      }
+      .footer-right {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-align: right;
+      }
+
+      /* ── REVEAL ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <a href="index.html" class="nav-logo">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"
+          alt="logo"
+        />
+        DevSpark
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="src/about/about.html">About</a></li>
+        <li><a href="src/contact/contact.html">Contact</a></li>
+        <button id="themeToggle" style="background:transparent;border:1px solid var(--border);color:var(--text);width:36px;height:36px;border-radius:6px;cursor:pointer;font-size:1rem;">☀️</button>
+      </ul>
+      <div class="nav-auth">
+        <a href="src/pages/signin/signin.html" class="btn-ghost">Sign In</a>
+        <a href="src/pages/signup/signup.html" class="btn-fill">Sign Up</a>
+      </div>
+      <button
+        id="themeToggle"
+        style="
+          background: transparent;
+          border: 1px solid var(--border);
+          color: var(--text);
+          width: 36px;
+          height: 36px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 1rem;
+        "
+      >
+        ☀️
+      </button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content reveal">
+        <p class="hero-eyebrow">Web development platform</p>
+        <h1 class="hero-title">
+          Dev<br /><span>Spark</span><br /><em>2.0</em>
+        </h1>
+        <p class="hero-body">
+          Learn modern web development by building real-world UI projects using
+          Tailwind CSS and JavaScript. No fluff — just code.
+        </p>
+        <div class="hero-cta">
+          <a href="src/pages/signup/signup.html" class="cta-primary"
+            >→ Get Started Free</a
+          >
+          <a href="src/pages/about/about.html" class="cta-secondary"
+            >Learn More</a
+          >
+        </div>
+      </div>
+
+      <div class="hero-right reveal">
+        <div class="hero-big-text">DS</div>
+        <span class="hero-tag">EST. 2024 · KARACHI, PK</span>
+        <span class="hero-tag">v2.0 · TAILWIND + FLOWBITE</span>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker">
+      <div class="ticker-track">
+        <span class="ticker-item"><span>5K+</span> Students</span>
+        <span class="ticker-item"><span>200+</span> Projects</span>
+        <span class="ticker-item"><span>30+</span> UI Components</span>
+        <span class="ticker-item">Tailwind CSS</span>
+        <span class="ticker-item">Flowbite</span>
+        <span class="ticker-item">JavaScript</span>
+        <span class="ticker-item"><span>100%</span> Free</span>
+        <span class="ticker-item">Open Source</span>
+        <!-- duplicate for seamless loop -->
+        <span class="ticker-item"><span>5K+</span> Students</span>
+        <span class="ticker-item"><span>200+</span> Projects</span>
+        <span class="ticker-item"><span>30+</span> UI Components</span>
+        <span class="ticker-item">Tailwind CSS</span>
+        <span class="ticker-item">Flowbite</span>
+        <span class="ticker-item">JavaScript</span>
+        <span class="ticker-item"><span>100%</span> Free</span>
+        <span class="ticker-item">Open Source</span>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <section class="features">
+      <p class="section-label">What we offer</p>
+      <div class="features-grid">
+        <div class="feat-card reveal">
+          <div class="feat-num">01</div>
+          <h3 class="feat-title">Learn by Doing</h3>
+          <p class="feat-desc">
+            Practice with real UI components and hands-on projects — no passive
+            video watching, just building.
+          </p>
+          <span class="feat-badge badge-cyan">Core Feature</span>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-num">02</div>
+          <h3 class="feat-title">Modern Tools</h3>
+          <p class="feat-desc">
+            Ship projects using industry-standard Tailwind CSS, Flowbite
+            components, and vanilla JavaScript.
+          </p>
+          <span class="feat-badge badge-red">Industry Standard</span>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-num">03</div>
+          <h3 class="feat-title">Beginner Friendly</h3>
+          <p class="feat-desc">
+            Step-by-step guidance designed specifically for students entering
+            web development for the first time.
+          </p>
+          <span class="feat-badge badge-yellow">Easy Start</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+      <p class="section-label">Platform numbers</p>
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-num">5K+</div>
+          <div class="stat-label">Students Enrolled</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">Projects Built</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-num">30+</div>
+          <div class="stat-label">UI Components</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-section">
+      <p class="section-label">How it works</p>
+      <div class="how-grid">
+        <div class="how-item reveal">
+          <div class="how-dot how-dot-1">01</div>
+          <h3 class="how-title">Create Account</h3>
+          <p class="how-desc">
+            Sign up for free in seconds — no credit card, no waiting. Instant
+            access to all content.
+          </p>
+        </div>
+        <div class="how-item reveal">
+          <div class="how-dot how-dot-2">02</div>
+          <h3 class="how-title">Pick a Project</h3>
+          <p class="how-desc">
+            Choose from 200+ real-world UI builds across landing pages,
+            dashboards, and components.
+          </p>
+        </div>
+        <div class="how-item reveal">
+          <div class="how-dot how-dot-3">03</div>
+          <h3 class="how-title">Build & Ship</h3>
+          <p class="how-desc">
+            Follow guided code walkthroughs, build the project, and add it to
+            your growing portfolio.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testi-section">
+      <p class="section-label">Student feedback</p>
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <p class="testi-text">
+            DevSpark helped me understand modern web UI design in a way no
+            YouTube tutorial ever did. I built my first portfolio in a week.
+          </p>
+          <p class="testi-author">— Ahmed, Student</p>
+        </div>
+        <div class="testi-card reveal">
+          <p class="testi-text">
+            The component examples are incredibly practical. I went from zero to
+            landing my first internship using what I learned here.
+          </p>
+          <p class="testi-author">— Fatima, Student</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section style="padding: 5rem 0; border-bottom: 1px solid var(--border)">
+      <div class="cta-banner reveal">
+        <div>
+          <p class="cta-banner-label">Ready to start?</p>
+          <h2 class="cta-banner-title">
+            Start Your<br /><span>Journey Today.</span>
+          </h2>
+          <p class="cta-banner-body">
+            Join thousands of students already building real web projects on
+            DevSpark. Free forever — no credit card required.
+          </p>
+          <div
+            style="
+              margin-top: 2rem;
+              display: flex;
+              gap: 1rem;
+              align-items: center;
+            "
+          >
+            <a href="src/pages/signup/signup.html" class="cta-primary"
+              >→ Create Free Account</a
+            >
+            <a href="src/pages/signin/signin.html" class="cta-secondary"
+              >Sign In</a
+            >
+          </div>
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+          "
+        >
+          <div class="cta-banner-big">DS</div>
+          <span
+            style="
+              font-family: &quot;JetBrains Mono&quot;, monospace;
+              font-size: 0.65rem;
+              letter-spacing: 0.12em;
+              color: var(--muted);
+              text-transform: uppercase;
+            "
+            >100% Free</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-left">DevSpark</div>
+      <div class="footer-right">
+        ©️ 2026 DevSpark. All Rights Reserved.<br />
+        Built using Tailwind CSS & Flowbite
+      </div>
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

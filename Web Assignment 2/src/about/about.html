@@ -1,0 +1,780 @@
+about.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>DevSpark — About</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #1a1a24;
+    --accent: #00e5c8;
+    --accent2: #ff4d6d;
+    --accent3: #ffd166;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --border: #2a2a38;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nav-logo img { height: 30px; filter: invert(1) sepia(1) hue-rotate(160deg) saturate(5); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-auth { display: flex; gap: 12px; }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 7px 18px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .btn-fill {
+    background: var(--accent);
+    border: none;
+    color: #000;
+    padding: 7px 18px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .btn-fill:hover { opacity: 0.85; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 6rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,229,200,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 20% 80%, rgba(255,77,109,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    margin-bottom: 2rem;
+  }
+
+  .hero-title span { color: var(--accent); }
+  .hero-title em { font-style: normal; color: var(--accent2); }
+
+  .hero-body {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 420px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.5rem;
+  }
+
+  .big-number {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(6rem, 12vw, 11rem);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--border);
+    letter-spacing: -0.02em;
+    user-select: none;
+  }
+
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 4px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── FEATURES ── */
+  .features {
+    padding: 5rem 4rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 3rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .feat-card {
+    padding: 2.5rem;
+    border-right: 1px solid var(--border);
+    transition: background 0.3s;
+    position: relative;
+  }
+
+  .feat-card:last-child { border-right: none; }
+  .feat-card:hover { background: var(--surface); }
+
+  .feat-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .feat-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .feat-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .feat-badge {
+    margin-top: 1.5rem;
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+
+  .badge-cyan { background: rgba(0,229,200,0.1); color: var(--accent); }
+  .badge-red  { background: rgba(255,77,109,0.1); color: var(--accent2); }
+  .badge-yellow { background: rgba(255,209,102,0.1); color: var(--accent3); }
+
+  /* ── STATS ── */
+  .stats {
+    padding: 5rem 4rem;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+
+  .stat-item:hover::before { transform: scaleX(1); }
+
+  .stat-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-section {
+    padding: 5rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 3rem;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 5%; right: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+  }
+
+  .tl-item { padding: 0 2rem; position: relative; }
+
+  .tl-dot {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    position: relative; z-index: 1;
+  }
+
+  .tl-dot-1 { background: rgba(0,229,200,0.1); border: 1px solid var(--accent); color: var(--accent); }
+  .tl-dot-2 { background: rgba(255,77,109,0.1); border: 1px solid var(--accent2); color: var(--accent2); }
+  .tl-dot-3 { background: rgba(255,209,102,0.1); border: 1px solid var(--accent3); color: var(--accent3); }
+
+  .tl-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .tl-desc { color: var(--muted); font-size: 0.88rem; }
+
+  /* ── TEAM ── */
+  .team-section {
+    padding: 5rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .team-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .team-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+
+  .team-img-wrap { height: 180px; overflow: hidden; }
+
+  .team-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(60%);
+    transition: filter 0.3s;
+  }
+
+  .team-card:hover .team-img-wrap img { filter: grayscale(0%); }
+
+  .team-info { padding: 1.5rem; border-top: 1px solid var(--border); }
+  .team-name { font-weight: 500; font-size: 1rem; margin-bottom: 4px; }
+  .team-role { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.08em; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    padding: 5rem 4rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .testi-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .testi-card::before {
+    content: '"';
+    position: absolute;
+    top: 12px; right: 20px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 5rem;
+    color: var(--border);
+    line-height: 1;
+  }
+
+  .testi-text { font-size: 0.95rem; line-height: 1.8; color: var(--text); font-style: italic; margin-bottom: 1.5rem; }
+  .testi-author { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ── PROJECT INFO ── */
+  .project-info { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .info-cell {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .info-cell:hover { border-color: var(--accent); }
+  .info-cell.span2 { grid-column: span 2; }
+
+  .info-key { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .info-val { font-size: 0.95rem; color: var(--accent); font-weight: 500; }
+
+  .summary-btn {
+    margin-top: 2rem;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 12px 32px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    display: block;
+    width: fit-content;
+  }
+
+  .summary-btn:hover { background: var(--accent); color: #000; }
+
+  #summary {
+    margin-top: 1.5rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    display: none;
+  }
+
+  #summary.visible { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* ── FAQ ── */
+  .faq-section { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+  .faq-list { margin-top: 3rem; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text);
+    text-align: left;
+    padding: 1.25rem 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+  }
+
+  .faq-question:hover { color: var(--accent); }
+
+  .faq-icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--accent);
+    transition: transform 0.3s;
+    line-height: 1;
+  }
+
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.3s;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 1.25rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2.5rem 4rem;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left { font-family: 'Bebas Neue', cursive; font-size: 1.3rem; color: var(--accent); letter-spacing: 2px; }
+  .footer-right { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; text-align: right; }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="../../../index.html" class="nav-logo">
+    <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="logo">
+    DevSpark
+  </a>
+  <ul class="nav-links">
+    <li><a href="../../../index.html">Home</a></li>
+    <li><a href="../about/about.html">About</a></li>
+    <li><a href="../contact/contact.html">Contact</a></li>
+    <li><a href="../resources/resources.html">Resources</a></li>
+  </ul>
+  <div class="nav-auth">
+    <a href="../signin/signin.html" class="btn-ghost">Sign In</a>
+    <a href="../signup/signup.html" class="btn-fill">Sign Up</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero reveal">
+  <div>
+    <p class="hero-eyebrow">About the platform</p>
+    <h1 class="hero-title">Build.<br><span>Learn.</span><br><em>Ignite.</em></h1>
+    <p class="hero-body">
+      DevSpark gives students and beginners a real-world playground to
+      master modern web development — through hands-on projects, live UI
+      components, and practical code.
+    </p>
+    <span class="hero-tag">EST. 2024 · WEB LEARNING PLATFORM</span>
+  </div>
+  <div class="hero-right">
+    <div class="big-number">DS</div>
+    <span class="hero-tag">v2.0 · TAILWIND + FLOWBITE</span>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <p class="section-label">What we offer</p>
+  <div class="features-grid reveal">
+    <div class="feat-card">
+      <span class="feat-icon">⚡</span>
+      <h3 class="feat-title">Interactive Learning</h3>
+      <p class="feat-desc">Learn development through real UI examples, live previews, and hands-on practice — no theory overload.</p>
+      <span class="feat-badge badge-cyan">Core Feature</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">🏗</span>
+      <h3 class="feat-title">Project Based</h3>
+      <p class="feat-desc">Build modern web projects using Tailwind and Flowbite. Ship something real from day one.</p>
+      <span class="feat-badge badge-red">Most Popular</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">🎯</span>
+      <h3 class="feat-title">Beginner Friendly</h3>
+      <p class="feat-desc">Structured tutorials designed from the ground up for students just starting their journey.</p>
+      <span class="feat-badge badge-yellow">Easy Start</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <p class="section-label">Platform numbers</p>
+  <div class="stats-grid">
+    <div class="stat-item reveal"><div class="stat-num">5K+</div><div class="stat-label">Students Enrolled</div></div>
+    <div class="stat-item reveal"><div class="stat-num">200+</div><div class="stat-label">Projects Built</div></div>
+    <div class="stat-item reveal"><div class="stat-num">30+</div><div class="stat-label">UI Components</div></div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <p class="section-label">Our journey</p>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-dot tl-dot-1">01</div>
+      <h3 class="tl-title">Idea Created</h3>
+      <p class="tl-desc">The DevSpark concept was born as a hands-on learning experiment, built by students, for students.</p>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot tl-dot-2">02</div>
+      <h3 class="tl-title">Prototype Built</h3>
+      <p class="tl-desc">Initial UI components and layouts were designed, refined, and stress-tested across devices.</p>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot tl-dot-3">03</div>
+      <h3 class="tl-title">Public Launch</h3>
+      <p class="tl-desc">Platform launched publicly, welcoming students worldwide into the DevSpark community.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section">
+  <p class="section-label">The people</p>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-img-wrap"><img src="https://picsum.photos/seed/sohaib/400/300" alt="Muhammad Sohaib"></div>
+      <div class="team-info">
+        <p class="team-name">Muhammad Sohaib</p>
+        <p class="team-role">// Backend Developer</p>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-img-wrap"><img src="https://picsum.photos/seed/ali/400/300" alt="Ali Arif"></div>
+      <div class="team-info">
+        <p class="team-name">Ali Arif</p>
+        <p class="team-role">// UI Designer</p>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-img-wrap"><img src="https://picsum.photos/seed/izlan/400/300" alt="Izlan Khan"></div>
+      <div class="team-info">
+        <p class="team-name">Izlan Khan</p>
+        <p class="team-role">// Project Manager</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <p class="section-label">Student feedback</p>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <p class="testi-text">DevSpark helped me understand modern web UI design in a way no YouTube tutorial ever did.</p>
+      <p class="testi-author">— Ahmed</p>
+    </div>
+    <div class="testi-card reveal">
+      <p class="testi-text">The component examples are incredibly practical. I built my portfolio using what I learned here.</p>
+      <p class="testi-author">— Fatima</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT INFO -->
+<section class="project-info">
+  <p class="section-label">Project information</p>
+  <div class="info-grid">
+    <div class="info-cell reveal"><p class="info-key">Project Name</p><p class="info-val" id="projectName">Loading...</p></div>
+    <div class="info-cell reveal"><p class="info-key">Total Projects</p><p class="info-val" id="totalProjects">Loading...</p></div>
+    <div class="info-cell reveal"><p class="info-key">Platform Status</p><p class="info-val" id="platformStatus">Loading...</p></div>
+    <div class="info-cell reveal"><p class="info-key">Technologies</p><p class="info-val" id="techList">Loading...</p></div>
+    <div class="info-cell span2 reveal"><p class="info-key">Lead Developer</p><p class="info-val" id="devName">Loading...</p></div>
+  </div>
+  <button onclick="showProjectSummary()" class="summary-btn">→ View Summary</button>
+  <div id="summary"><p>Your project summary will appear here.</p></div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <p class="section-label">Frequently asked</p>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What is DevSpark? <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">DevSpark is a web-based learning platform designed to help students and beginners build real-world web projects using modern tools like Tailwind CSS and Flowbite.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Is it free to use? <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Yes — completely free for all learning purposes. No hidden fees, no premium tiers for core content.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Do I need prior coding experience? <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Not at all. DevSpark's curriculum is designed to meet you where you are, from total beginner to intermediate developer.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">DevSpark</div>
+  <div class="footer-right">
+    ©️ 2026 DevSpark. All Rights Reserved.<br>
+    Built using Tailwind CSS & Flowbite
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  // Summary toggle
+  function showProjectSummary() {
+    document.getElementById('summary').classList.toggle('visible');
+  }
+</script>
+
+<script src="../../scripts/about.js"></script>
+</body>
+</html>

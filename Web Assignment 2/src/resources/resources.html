@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>DevSpark — Resources</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f; --surface: #111118; --surface2: #1a1a24;
+    --accent: #00e5c8; --accent2: #ff4d6d; --accent3: #ffd166;
+    --text: #e8e8f0; --muted: #6b6b80; --border: #2a2a38;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+
+  /* ── NAVBAR ── */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(10,10,15,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Bebas Neue', cursive; font-size: 1.6rem; letter-spacing: 2px; color: var(--accent); text-decoration: none; }
+  .nav-logo img { height: 30px; filter: invert(1) sepia(1) hue-rotate(160deg) saturate(5); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+  .nav-auth { display: flex; gap: 12px; align-items: center; }
+  .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px 18px; border-radius: 6px; font-size: 0.85rem; cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-fill { background: var(--accent); border: none; color: #000; padding: 7px 18px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
+  .btn-fill:hover { opacity: 0.85; }
+  #themeToggle { background: transparent; border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: border-color 0.2s; }
+  #themeToggle:hover { border-color: var(--accent); }
+
+  /* ── PAGE HERO ── */
+  .page-hero { padding: 5rem 4rem 3rem; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; opacity: 0.2; pointer-events: none; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(0,229,200,0.07) 0%, transparent 65%); pointer-events: none; }
+  .page-hero-inner { position: relative; z-index: 1; }
+  .page-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+  .page-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+  .page-title { font-family: 'Bebas Neue', cursive; font-size: clamp(3.5rem, 7vw, 6rem); line-height: 0.9; margin-bottom: 1rem; }
+  .page-title span { color: var(--accent); }
+  .page-subtitle { color: var(--muted); font-size: 1rem; max-width: 560px; margin-bottom: 2rem; }
+
+  /* ── SECTION LABEL ── */
+  .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── CONTROLS BAR ── */
+  .controls-section { padding: 2rem 4rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+  .controls-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
+  .search-wrap { position: relative; flex: 1; min-width: 200px; }
+  .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.9rem; pointer-events: none; }
+  #searchInput { width: 100%; background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 10px 14px 10px 36px; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+  #searchInput:focus { border-color: var(--accent); }
+  #searchInput::placeholder { color: var(--muted); }
+  .filter-select { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 10px 14px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.05em; outline: none; cursor: pointer; transition: border-color 0.2s; }
+  .filter-select:focus { border-color: var(--accent); }
+  .filter-select option { background: var(--surface2); }
+  .btn-add { background: var(--accent); border: none; color: #000; padding: 10px 20px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; white-space: nowrap; }
+  .btn-add:hover { opacity: 0.85; }
+  .results-info { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
+  .results-info span { color: var(--accent); }
+
+  /* ── GRID ── */
+  .projects-section { padding: 3rem 4rem 5rem; }
+  #projectsGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  .empty-state { text-align: center; padding: 5rem 2rem; color: var(--muted); grid-column: 1/-1; }
+  .empty-state-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .empty-state-text { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; letter-spacing: 0.1em; }
+
+  /* ── PROJECT CARD ── */
+  .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.25s, border-color 0.25s; position: relative; }
+  .project-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .card-top { padding: 1.5rem 1.5rem 1rem; }
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+  .card-category { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: rgba(0,229,200,0.08); border: 1px solid rgba(0,229,200,0.2); padding: 3px 8px; border-radius: 3px; }
+  .card-rating { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--accent3); }
+  .card-title { font-family: 'Bebas Neue', cursive; font-size: 1.4rem; letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 0.5rem; }
+  .card-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem; }
+  .card-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .card-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); padding: 2px 7px; border-radius: 3px; text-transform: lowercase; }
+  .card-bottom { padding: 0.75rem 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--surface2); }
+  .card-author { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.06em; }
+  .card-difficulty { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .diff-beginner     { color: #4ade80; }
+  .diff-intermediate { color: var(--accent3); }
+  .diff-advanced     { color: var(--accent2); }
+  .card-actions { display: flex; gap: 0.5rem; padding: 0.75rem 1.5rem; border-top: 1px solid var(--border); }
+  .btn-edit { flex: 1; background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px; border-radius: 5px; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+  .btn-edit:hover { border-color: var(--accent3); color: var(--accent3); }
+  .btn-delete { flex: 1; background: transparent; border: 1px solid var(--border); color: var(--text); padding: 7px; border-radius: 5px; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+  .btn-delete:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  /* ── MODAL ── */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+  .modal-overlay.active { display: flex; }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; width: 90%; max-width: 520px; max-height: 90vh; overflow-y: auto; position: relative; animation: modalIn 0.25s ease; }
+  @keyframes modalIn { from { opacity: 0; transform: scale(0.96) translateY(12px); } to { opacity: 1; transform: none; } }
+  .modal-title { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; letter-spacing: 0.03em; margin-bottom: 0.25rem; }
+  .modal-sub { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 2rem; text-transform: uppercase; }
+  .modal-close { position: absolute; top: 1.25rem; right: 1.25rem; background: transparent; border: 1px solid var(--border); color: var(--muted); width: 32px; height: 32px; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: border-color 0.2s, color 0.2s; }
+  .modal-close:hover { border-color: var(--accent2); color: var(--accent2); }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  .form-input, .form-select, .form-textarea { width: 100%; background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 10px 14px; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
+  .form-textarea { resize: vertical; min-height: 80px; }
+  .form-select option { background: var(--surface2); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .modal-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+  .btn-modal-submit { flex: 2; background: var(--accent); border: none; color: #000; padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; }
+  .btn-modal-submit:hover { opacity: 0.88; }
+  .btn-modal-cancel { flex: 1; background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: border-color 0.2s; }
+  .btn-modal-cancel:hover { border-color: var(--accent2); }
+
+  /* ── TOAST ── */
+  .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--surface); border: 1px solid var(--accent); color: var(--accent); padding: 12px 20px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; z-index: 300; animation: toastIn 0.3s ease; display: none; }
+  .toast.show { display: block; }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+  /* ── FOOTER ── */
+  footer { padding: 2.5rem 4rem; background: var(--surface); border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-left { font-family: 'Bebas Neue', cursive; font-size: 1.3rem; color: var(--accent); letter-spacing: 2px; }
+  .footer-right { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; text-align: right; }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="../../index.html" class="nav-logo">
+    <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="logo">
+    DevSpark
+  </a>
+  <ul class="nav-links">
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../about/about.html">About</a></li>
+    <li><a href="resources.html" class="active">Resources</a></li>
+    <li><a href="../contact/contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-auth">
+    <button id="themeToggle" title="Toggle theme">☀️</button>
+    <a href="../signin/signin.html" class="btn-ghost">Sign In</a>
+    <a href="../signup/signup.html" class="btn-fill">Sign Up</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner reveal">
+    <p class="page-eyebrow">Project Library</p>
+    <h1 class="page-title">All <span>Resources</span></h1>
+    <p class="page-subtitle">Browse, search, and manage all DevSpark projects. Add your own, edit existing ones, or remove outdated resources.</p>
+  </div>
+</section>
+
+<!-- CONTROLS -->
+<div class="controls-section">
+  <div class="controls-row">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search projects, tech, authors...">
+    </div>
+    <select class="filter-select" id="filterCategory">
+      <option value="All">All Categories</option>
+      <option>UI/UX</option>
+      <option>Dashboard</option>
+      <option>E-Commerce</option>
+      <option>Landing Page</option>
+      <option>Blog</option>
+      <option>Forms</option>
+    </select>
+    <select class="filter-select" id="filterDifficulty">
+      <option value="All">All Levels</option>
+      <option>Beginner</option>
+      <option>Intermediate</option>
+      <option>Advanced</option>
+    </select>
+    <select class="filter-select" id="filterRating">
+      <option value="0">Any Rating</option>
+      <option value="4.5">4.5+ Stars</option>
+      <option value="4.7">4.7+ Stars</option>
+      <option value="4.9">4.9 Stars</option>
+    </select>
+    <select class="filter-select" id="sortBy">
+      <option value="newest">Newest First</option>
+      <option value="oldest">Oldest First</option>
+      <option value="rating_high">Highest Rated</option>
+      <option value="rating_low">Lowest Rated</option>
+      <option value="title_az">Title A→Z</option>
+      <option value="title_za">Title Z→A</option>
+    </select>
+    <button class="btn-add" id="btnAddProject">+ Add Project</button>
+  </div>
+  <p class="results-info" id="resultsInfo">Showing <span id="resultCount">0</span> projects</p>
+</div>
+
+<!-- PROJECTS GRID -->
+<section class="projects-section">
+  <p class="section-label">Project library</p>
+  <div id="projectsGrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">DevSpark</div>
+  <div class="footer-right">© 2026 DevSpark. All Rights Reserved.<br>Built using Tailwind CSS & Flowbite</div>
+</footer>
+
+<!-- ADD / EDIT MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <h2 class="modal-title" id="modalTitle">Add Project</h2>
+    <p class="modal-sub" id="modalSub">Fill in the details below</p>
+
+    <div class="form-group">
+      <label class="form-label">Project Title *</label>
+      <input class="form-input" id="mTitle" placeholder="e.g. Portfolio Landing Page">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Category *</label>
+        <select class="form-select" id="mCategory">
+          <option>UI/UX</option>
+          <option>Dashboard</option>
+          <option>E-Commerce</option>
+          <option>Landing Page</option>
+          <option>Blog</option>
+          <option>Forms</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Difficulty *</label>
+        <select class="form-select" id="mDifficulty">
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Technologies *</label>
+        <input class="form-input" id="mTech" placeholder="HTML, CSS, JS">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Rating (0–5)</label>
+        <input class="form-input" id="mRating" type="number" min="0" max="5" step="0.1" placeholder="4.5">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Author *</label>
+      <input class="form-input" id="mAuthor" placeholder="Your name">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Description *</label>
+      <textarea class="form-textarea" id="mDescription" placeholder="Brief description of the project..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Tags (comma-separated)</label>
+      <input class="form-input" id="mTags" placeholder="e.g. landing, responsive, dark-mode">
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-modal-submit" id="modalSubmit">→ Save Project</button>
+      <button class="btn-modal-cancel" id="modalCancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast"></div>
+
+<script type="module" src="../../src/pages/resources/resources.js"></script>
+</body>
+</html>
